@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_page"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="6dp"
+    android:background="@color/white"
+    android:layout_marginRight="6dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:ignore="RedundantNamespace,UselessLeaf" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity = "center"
+        android:background="@drawable/circle"
+        android:padding="30dp"
+        app:srcCompat="@drawable/logo"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/lemon"
+        android:gravity="center_horizontal"
+        android:text="Sign IN"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:autofillHints=""
+        android:drawableStart="@drawable/baseline_person_24"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="15dp"
+        android:hint="email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="#3E2723"
+        android:background="@drawable/edit"
+        android:padding="15sp"/>
+
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:drawableStart="@drawable/baseline_password_24"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="15dp"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="#3E2723"
+        android:background="@drawable/edit"
+        android:padding="15sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/lemon"
+        android:gravity="center_horizontal"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:text="forogt passowrd?"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        tools:ignore="TextViewEdits"
+        android:layout_marginRight="60dp" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button"
+        android:fontFamily="@font/lemon"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="login"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:backgroundTint="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/lemon"
+        android:text="or"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"/>
+
+
+    <Button
+        android:id="@+id/create_btn"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:autoSizeMaxTextSize="@android:dimen/app_icon_size"
+        android:background="@drawable/button"
+        android:fontFamily="@font/lemon"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="create account"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:backgroundTint="@color/black"
+        tools:ignore="UnusedAttribute" />
+
+</LinearLayout>

@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/circle"
+        android:padding="40dp"
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="null"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/lemon"
+        android:text="intelliBuy"
+        android:textSize="55sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="60dp"/>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/lemon"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="welcome to place of all your Tech needs"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/lemon"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:text="lets get what you need"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:backgroundTint="@color/black" />
+
+
+</LinearLayout>
