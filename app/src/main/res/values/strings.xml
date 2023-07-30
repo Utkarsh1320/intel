@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">intel</string>
+    <string name="main_logo">main logo</string>
+    <string name="intelligentbuy">intelligentBuy</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "402073254805",
+    "project_id": "intelbuy-f6616",
+    "storage_bucket": "intelbuy-f6616.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402073254805:android:98d5b34d8a5d00cd02149c",
+        "android_client_info": {
+          "package_name": "com.example.intel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402073254805-dcbce1uskf18kaph2jnr27o4a8r4gt3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCKt6z-5Veq1rk9SIEaS0AbEc2-J6xjGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402073254805-dcbce1uskf18kaph2jnr27o4a8r4gt3v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
