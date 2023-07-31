@@ -49,7 +49,7 @@
 
 
     <EditText
-        android:id="@+id/email_input"
+        android:id="@+id/first_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -66,7 +66,7 @@
         android:textColorHint="#3E2723"
         android:padding="15sp"/>
     <EditText
-        android:id="@+id/email_input"
+        android:id="@+id/last_name"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -109,6 +109,24 @@
 
 
     <EditText
+        android:id="@+id/email_input"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:autofillHints=""
+        android:drawableStart="@drawable/email"
+        android:drawablePadding="15dp"
+        android:hint="email"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="#3E2723"
+        android:background="@drawable/edit"
+        android:padding="15sp"
+        tools:ignore="DuplicateIds" />
+
+    <EditText
         android:id="@+id/password_input"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -118,26 +136,7 @@
         android:drawableStart="@drawable/baseline_password_24"
         android:drawableLeft="@drawable/baseline_person_24"
         android:drawablePadding="15dp"
-        android:hint="password"
-
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/black"
-        android:textColorHint="#3E2723"
-        android:background="@drawable/edit"
-        android:padding="15sp"/>
-
-    <EditText
-        android:id="@+id/re_password_input"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:autofillHints=""
-        android:drawableStart="@drawable/baseline_password_24"
-        android:drawableLeft="@drawable/baseline_person_24"
-        android:drawablePadding="15dp"
-        android:hint="re-enter password"
+        android:hint="enter password"
 
         android:inputType="textPassword"
         android:minHeight="48dp"
@@ -152,10 +151,11 @@
 
 
     <Button
+        android:id="@+id/create_btn"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="50dp"
         android:autoSizeMaxTextSize="@android:dimen/app_icon_size"
         android:background="@drawable/button"
         android:fontFamily="@font/lemon"
@@ -166,5 +166,14 @@
         android:textSize="18sp"
         app:backgroundTint="@color/black"
         tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/loginRedirectText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="45dp"
+        android:text="@string/already_have_an_account_login"
+        android:textSize="15sp" />
 
 </LinearLayout>
