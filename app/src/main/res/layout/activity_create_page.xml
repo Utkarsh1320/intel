@@ -9,7 +9,7 @@
     android:layout_marginRight="6dp"
     android:background="@color/white"
     tools:ignore="ExtraText,RtlHardcoded"
-    tools:context=".CreatePage">
+    tools:context=".credentials.CreatePage">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

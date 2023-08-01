@@ -9,7 +9,7 @@
     android:layout_marginEnd="6dp"
     android:background="@color/white"
     android:layout_marginRight="6dp"
-    tools:context=".LoginPage">
+    tools:context=".credentials.LoginPage">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
