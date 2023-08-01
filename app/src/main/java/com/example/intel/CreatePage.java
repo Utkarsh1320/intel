@@ -44,8 +44,8 @@ public class CreatePage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.email_input);
         editTextPassword = findViewById(R.id.password_input);
-//        editTextFirstName = findViewById(R.id.password_input);
-//        editTextLastName = findViewById(R.id.password_input);
+//        editTextFirstName = findViewById(R.id.first_name);
+//        editTextLastName = findViewById(R.id.last_name);
         buttonReg = findViewById(R.id.create_btn);
         redirect = findViewById(R.id.loginRedirectText);
 
@@ -58,6 +58,8 @@ public class CreatePage extends AppCompatActivity {
                 String email , password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
+
+
 
 
                 if (TextUtils. isEmpty (email)){
@@ -76,6 +78,8 @@ public class CreatePage extends AppCompatActivity {
                                     Toast.makeText(CreatePage.this, "Account Created.",
                                             Toast.LENGTH_SHORT).show();
                                             FirebaseUser user = mAuth.getCurrentUser();
+                                            Intent intent = new Intent(getApplicationContext(), emailVerification.class);
+                                            startActivity(intent);
                                             finish();
                                 } else {
                                     Toast.makeText(CreatePage.this, "Authentication failed.",
