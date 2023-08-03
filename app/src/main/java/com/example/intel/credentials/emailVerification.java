@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.intel.R;
 import com.example.intel.databinding.ActivityCreatePageBinding;
@@ -17,39 +18,117 @@ import com.google.firebase.auth.FirebaseUser;
 public class emailVerification extends AppCompatActivity {
 
     Button verifybtn;
-    ActivityCreatePageBinding binding;
+    private String email;
     FirebaseAuth mAuth;
-    private String email , password ;
+    FirebaseUser mUser;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_verification);
-        binding = ActivityCreatePageBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            email = intent.getStringExtra("email");
+        }
+
         mAuth = FirebaseAuth.getInstance();
         verifybtn = findViewById(R.id.btn_verify);
+        mUser = mAuth.getCurrentUser();
 
         verifybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email = binding.emailInput.getText().toString();
-                password = binding.passwordInput.getText().toString();
-                mAuth.getInstance()
-                        .signInWithEmailAndPassword(email,password)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                FirebaseUser user = mAuth.getInstance().getCurrentUser();
-                                if(user.isEmailVerified()){
-                                    Intent intent = new Intent(emailVerification.this, LoginPage.class);
-                                    startActivity(intent);
-                                    finish();
-                                }else{
-                                    user.sendEmailVerification();
-                                }
-                            }
-                        });
+                sendVerificationEmail(email);
             }
         });
     }
+    private void sendVerificationEmail(String email) {
+        mAuth.fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult().getSignInMethods().isEmpty()) {
+                            // The email is not registered, show an error message or redirect to the register page.
+                            Toast.makeText(emailVerification.this, "Email is not registered. Please register first.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // The email is registered, send verification email
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(task1 -> {
+                                            if (task1.isSuccessful()) {
+                                                Toast.makeText(emailVerification.this, "Verification email sent. Please check your email.", Toast.LENGTH_SHORT).show();
+                                                // Redirect to the login page after sending the verification email
+                                                redirectToLogin();
+                                            } else {
+                                                Toast.makeText(emailVerification.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        }
+                    } else {
+                        Toast.makeText(emailVerification.this, "Failed to fetch email information.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void redirectToLogin() {
+        Intent intent = new Intent(emailVerification.this, LoginPage.class);
+        startActivity(intent);
+        finish();
+    }
+
+//    private void sendVerificationEmail() {
+//        if (mUser != null) {
+//            mUser.sendEmailVerification()
+//                    .addOnCompleteListener(task -> {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(emailVerification.this, "Verification email sent.", Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(emailVerification.this, LoginPage.class);
+//                            startActivity(intent);
+//                            finish();
+//                        } else {
+//                            Toast.makeText(emailVerification.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//        } else {
+//            Toast.makeText(emailVerification.this, "User not authenticated.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 }
+
+//    private void sendVerificationEmail(String email) {
+//        mAuth.fetchSignInMethodsForEmail(email)
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        if (task.getResult().getSignInMethods().isEmpty()) {
+//                            // The email is not registered, show an error message or redirect to the register page.
+//                            Toast.makeText(emailVerification.this, "Email is not registered. Please register first.", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            // The email is registered, send verification email
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            if (user != null) {
+//                                user.sendEmailVerification()
+//                                        .addOnCompleteListener(task1 -> {
+//                                            if (task1.isSuccessful()) {
+//                                                Toast.makeText(emailVerification.this, "Verification email sent. Please check your email.", Toast.LENGTH_SHORT).show();
+//                                                // Redirect to the login page after sending the verification email
+//                                                Intent intent = new Intent(emailVerification.this, LoginPage.class);
+//                                                startActivity(intent);
+//                                            } else {
+//                                                Toast.makeText(emailVerification.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();
+//                                            }
+//                                        });
+//                            }
+//                        }
+//                    } else {
+//                        Toast.makeText(emailVerification.this, "Failed to fetch email information.", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+//}
+
+
+
+

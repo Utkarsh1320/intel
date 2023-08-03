@@ -57,6 +57,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:text="lets get what you need"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="20sp"
         app:backgroundTint="@color/black" />

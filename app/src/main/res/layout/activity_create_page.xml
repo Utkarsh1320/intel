@@ -162,6 +162,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:text="create account"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="18sp"
         app:backgroundTint="@color/black"
@@ -175,6 +176,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="35dp"
         android:text="@string/already_have_an_account_login"
-        android:textSize="15sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

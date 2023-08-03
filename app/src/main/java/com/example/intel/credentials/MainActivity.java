@@ -16,20 +16,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnStart = findViewById(R.id.btnStart);
 
-        Button btn = (Button) findViewById(R.id.btnStart);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openLoginPage();
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,LoginPage.class);
+                startActivity(intent);
+                finish();
             }
         });
-    }
-    public void openLoginPage(){
-        Intent intent = new Intent(this, LoginPage.class);
-        startActivity(intent);
 
     }
+
 
 
 }

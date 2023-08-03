@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.intel.Products.ProductsPage;
+import com.example.intel.Products.ProductList;
 import com.example.intel.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +33,7 @@ public class LoginPage extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), ProductsPage.class);
+            Intent intent = new Intent(getApplicationContext(), ProductList.class);
             startActivity(intent);
             finish();
         }
@@ -45,8 +45,6 @@ public class LoginPage extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         editTextEmail = findViewById(R.id.email_input);
         editTextPassword = findViewById(R.id.password_input);
-        editTextFirstName = findViewById(R.id.password_input);
-        editTextLastName = findViewById(R.id.password_input);
         buttonLogin = findViewById(R.id.login_btn);
         buttonCreate = findViewById(R.id.create_btn);
 
@@ -83,7 +81,7 @@ public class LoginPage extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Login SuccessFull",Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), ProductsPage.class);
+                                    Intent intent = new Intent(getApplicationContext(), ProductList.class);
                                     startActivity(intent);
                                     finish();
 

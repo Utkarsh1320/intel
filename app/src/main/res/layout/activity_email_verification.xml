@@ -11,6 +11,8 @@
     android:background="@color/white"
     tools:context=".credentials.emailVerification">
     <androidx.cardview.widget.CardView
+        android:elevation="10px"
+        android:outlineSpotShadowColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView

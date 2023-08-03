@@ -102,6 +102,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:text="login"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="18sp"
         app:backgroundTint="@color/black" />
@@ -129,6 +130,7 @@
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:text="create account"
+        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="18sp"
         app:backgroundTint="@color/black"
