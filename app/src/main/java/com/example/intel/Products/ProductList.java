@@ -102,7 +102,7 @@ public class ProductList extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(ProductList.this, ProductDetails.class);
-                                intent.putExtra("pid",model.getId());
+                                intent.putExtra("id",model.getId());
                                 startActivity(intent);
                             }
                         });

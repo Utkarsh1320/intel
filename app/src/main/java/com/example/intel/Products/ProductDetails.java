@@ -19,7 +19,9 @@ import com.squareup.picasso.Picasso;
 
 
 
+
 public class ProductDetails extends AppCompatActivity {
+
 
     private ImageView productImage;
     private TextView productName, productPrice, productBrand, productDescription, productQuantity;
@@ -33,7 +35,7 @@ public class ProductDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_deatils);
 
-        productID = getIntent().getStringExtra("pid");
+        productID = getIntent().getStringExtra("id");
         productImage = findViewById(R.id.detail_img);
         productName = findViewById(R.id.detail_name);
         productPrice = findViewById(R.id.detail_price);
@@ -47,8 +49,13 @@ public class ProductDetails extends AppCompatActivity {
 
     }
     private void getProductDetails(String productID) {
-        DatabaseReference productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-        productsRef.child(productID).addValueEventListener(new ValueEventListener() {
+
+        if (productID == null) {
+            // Handle the case when productID is null (e.g., show an error message, return, etc.)
+            return;
+        }
+        DatabaseReference ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        ProductRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -89,5 +96,7 @@ public class ProductDetails extends AppCompatActivity {
             }
         });
     }
+
+
 }
 
