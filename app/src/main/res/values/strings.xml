@@ -5,4 +5,10 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="add_to_card">add to Card</string>
+    <string name="name_of_product">Name of Product</string>
+    <string name="name_of_product_detail">Name of Product</string>
+    <string name="imagedetail">image</string>
+    <string name="name_of_product_det">Name of Product</string>
+    <string name="price_detail">Name of Product</string>
 </resources>

@@ -71,30 +71,13 @@ public class DataModel {
     }
 
 
-
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
-//
-//    public String getAmount() {
-//        return amount;
-//    }
-//
-//    public void setAmount(String amount) {
-//        this.amount = amount;
-//    }
-
     public DataModel(String headline , String price , String brand , String image, String id, String amount){
-        this.brand =brand;
-        this.headline =headline;
-        this.price =price;
-        this.brand =image;
-        this.id =id;
-        this.amount =amount;
+        this.brand = brand;
+        this.headline = headline;
+        this.price = price;
+        this.brand = image;
+        this.id = id;
+        this.amount = amount;
 
     }
 

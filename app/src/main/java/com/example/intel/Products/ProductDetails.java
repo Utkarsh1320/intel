@@ -50,10 +50,10 @@ public class ProductDetails extends AppCompatActivity {
     }
     private void getProductDetails(String productID) {
 
-        if (productID == null) {
-            // Handle the case when productID is null (e.g., show an error message, return, etc.)
-            return;
-        }
+//        if (productID == null) {
+//            // Handle the case when productID is null (e.g., show an error message, return, etc.)
+//            return;
+//        }
         DatabaseReference ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
         ProductRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
