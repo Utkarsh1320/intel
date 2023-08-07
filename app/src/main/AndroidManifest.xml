@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Intel"
         tools:targetApi="31" >
         <activity
+            android:name=".Cart.CartDisplay"
+            android:exported="false" />
+        <activity
             android:name=".Products.ProductDetails"
             android:exported="false" />
         <activity

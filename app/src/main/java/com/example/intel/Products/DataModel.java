@@ -1,7 +1,39 @@
 package com.example.intel.Products;
 
 public class DataModel {
-    private String headline , price , brand , image  ;
+
+    private String headline;
+    private String price;
+    private String brand;
+    private String image;
+    private String id;
+    private String amount;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description ;
     public DataModel(){
 
     }
@@ -61,8 +93,8 @@ public class DataModel {
         this.headline =headline;
         this.price =price;
         this.brand =image;
-//        this.id =id;
-//        this.amount =amount;
+        this.id =id;
+        this.amount =amount;
 
     }
 

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import com.example.intel.Products.ViewHolder.ViewHolder;
 import com.example.intel.R;
 import com.example.intel.credentials.LoginPage;
+import com.example.intel.databinding.ActivityProductViewBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -90,10 +92,20 @@ public class ProductList extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<DataModel, ViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull DataModel model) {
+                        Log.d("TAG","working");
                         holder.productName.setText(model.getHeadline());
                         holder.productBrand.setText(model.getBrand());
                         holder.productPrice.setText(model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(ProductList.this, ProductDetails.class);
+                                intent.putExtra("pid",model.getId());
+                                startActivity(intent);
+                            }
+                        });
 
                     }
 
@@ -111,4 +123,6 @@ public class ProductList extends AppCompatActivity {
 
 
     }
+
+
 }
