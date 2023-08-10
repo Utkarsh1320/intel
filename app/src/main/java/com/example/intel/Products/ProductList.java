@@ -15,10 +15,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.intel.Cart.CartDisplay;
 import com.example.intel.Products.ViewHolder.ViewHolder;
 import com.example.intel.R;
 import com.example.intel.credentials.LoginPage;
 import com.example.intel.databinding.ActivityProductViewBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -49,8 +51,14 @@ public class ProductList extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         LogoutButton = findViewById(R.id.logout_btn);
         user = auth.getCurrentUser();
-//        addToCartBtn = findViewById(R.id.cartImage);
-
+        FloatingActionButton cart = findViewById(R.id.cart_btn);
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductList.this, CartDisplay.class);
+                startActivity(intent);
+            }
+        });
 
         if(user == null){
             Intent intent = new Intent(getApplicationContext(), LoginPage.class);
@@ -68,13 +76,6 @@ public class ProductList extends AppCompatActivity {
         });
 
 
-//        addToCartBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(ProductList.this,CartActivity.class);
-//                startActivity(intent);
-//            }
-//        });
         recyclerView = findViewById(R.id.mainRecyclerView);
         recyclerView.setHasFixedSize(true);
         layoutManager = new GridLayoutManager(this, 1);

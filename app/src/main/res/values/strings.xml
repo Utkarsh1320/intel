@@ -11,4 +11,5 @@
     <string name="imagedetail">image</string>
     <string name="name_of_product_det">Name of Product</string>
     <string name="price_detail">Name of Product</string>
+    <string name="price">Price</string>
 </resources>
