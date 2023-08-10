@@ -22,80 +22,61 @@ import com.squareup.picasso.Picasso;
 
 public class ProductDetails extends AppCompatActivity {
 
-
     private ImageView productImage;
-    private TextView productName, productPrice, productBrand, productDescription, productQuantity;
-    private Button  addQuantity, removeQuantity;
+    private TextView productName;
+    private TextView productPrice;
+    private TextView productBrand;
+    private TextView productDescription;
     DataModel products;
-    private int finalQuantity = 1;
-    private String productID = " ";
+    private final int finalQuantity = 1;
+    private final String productID = " ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_deatils);
 
-        productID = getIntent().getStringExtra("id");
+        //reference of the database in the activity
+        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        // ids for elements in the layout
         productImage = findViewById(R.id.detail_img);
         productName = findViewById(R.id.detail_name);
         productPrice = findViewById(R.id.detail_price);
         productBrand = findViewById(R.id.detail_brand);
         productDescription = findViewById(R.id.detail_description);
 //        addToCartButton = findViewById(R.id.detailAddToCart);
-        productQuantity = findViewById(R.id.itemQuantity);
-        addQuantity = findViewById(R.id.addQuantity);
-        removeQuantity = findViewById(R.id.removeQuantity);
-        getProductDetails(productID);
 
-    }
-    private void getProductDetails(String productID) {
-
-//        if (productID == null) {
-//            // Handle the case when productID is null (e.g., show an error message, return, etc.)
-//            return;
-//        }
-        DatabaseReference ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
-        ProductRef.child(productID).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    products = snapshot.getValue(DataModel.class);
-                    productName.setText(products.getHeadline());
-                    productPrice.setText(products.getPrice());
-                    productBrand.setText(products.getBrand());
-                    productDescription.setText(products.getDescription());
-                    productQuantity.setText(String.valueOf(finalQuantity));
-                    Picasso.get().load(products.getImage()).into(productImage);
+        //add to cart button ids
+        TextView productQuantity = findViewById(R.id.itemQuantity);
+        Button addQuantity = findViewById(R.id.addQuantity);
+        Button removeQuantity = findViewById(R.id.removeQuantity);
 
 
-                    addQuantity.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            finalQuantity++;
-                            productQuantity.setText(String.valueOf(finalQuantity));
-                        }
-                    });
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            String productId = extras.getString("id");
 
-                    removeQuantity.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(finalQuantity == 1){
-                                Log.d("final", String.valueOf(finalQuantity));
-                                return;
-                            }
-                            finalQuantity--;
-                            productQuantity.setText(String.valueOf(finalQuantity));
-                        }
-                    });
+            assert productId != null;
+            productRef.child(productId).get().addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    DataModel product = task.getResult().getValue(DataModel.class);
+                    if(product!=null){
+                        setTitle(product.getHeadline());
+                        productName.setText(product.getHeadline());
+                        productPrice.setText(product.getPrice());
+                        productBrand.setText(product.getBrand());
+                        productDescription.setText(product.getDescription());
+
+                        Picasso.get().load(product.getImage()).into(productImage);
+                    }
                 }
-            }
+            });
+        }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
     }
+
 
 
 }

@@ -92,7 +92,6 @@ public class ProductList extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<DataModel, ViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull DataModel model) {
-                        Log.d("TAG","working");
                         holder.productName.setText(model.getHeadline());
                         holder.productBrand.setText(model.getBrand());
                         holder.productPrice.setText(model.getPrice());

@@ -9,6 +9,48 @@ public class DataModel {
     private String id;
     private String amount;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getId() {
         return id;
     }
@@ -24,60 +66,17 @@ public class DataModel {
     public void setAmount(String amount) {
         this.amount = amount;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    private String description ;
-    public DataModel(){
+    public DataModel() {
 
     }
 
-    public String getHeadline() {
-        return headline;
-    }
-
-    public void setHeadline(String headline) {
+    public DataModel(String headline , String price  , String image, String id, String amount,String brand){
         this.headline = headline;
-    }
-
-
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
+        this.price = price;
         this.image = image;
-    }
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-
-    public DataModel(String headline , String price , String brand , String image, String id, String amount){
-        this.brand = brand;
-        this.headline = headline;
-        this.price = price;
-        this.brand = image;
         this.id = id;
         this.amount = amount;
+        this.brand = brand;
 
     }
 
