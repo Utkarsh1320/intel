@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.intel.Checkout;
 import com.example.intel.Products.ProductDetails;
 import com.example.intel.R;
@@ -66,10 +67,12 @@ public class CartDisplay extends AppCompatActivity {
                 = new FirebaseRecyclerAdapter<CartDataModel, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull CartDataModel model) {
-                holder.txtProductName.setText(model.getName());
+                holder.txtProductName.setText(model.getHeadline());
                 holder.txtProductPrice.setText(model.getPrice());
                 holder.itemQuantity.setText("Quantity: "+model.getQuantity());
-                Picasso.get().load(model.getImage()).into(holder.eachCartShoeImage);
+                Picasso.get().load(model.getImage()).into(holder.cartImage);
+
+
 
 
                 int ProductPrice=((Integer.valueOf(model.getPrice()))*Integer.valueOf(model.getQuantity()));

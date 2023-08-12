@@ -12,7 +12,7 @@ import com.example.intel.interfac.ItemClickListner;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public TextView txtProductName, txtProductPrice, txtProductBrand, itemQuantity, totalPrice;
-    public ImageView eachCartShoeImage;
+    public ImageView cartImage;
     private ItemClickListner itemClickListner;
 
     public CartViewHolder(@NonNull View itemView) {
@@ -20,11 +20,9 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         txtProductName = itemView.findViewById(R.id.cart_name);
         txtProductPrice = itemView.findViewById(R.id.price);
-        eachCartShoeImage = itemView.findViewById(R.id.cart_img);
+        cartImage = itemView.findViewById(R.id.cart_img);
         itemQuantity = itemView.findViewById(R.id.itemQuantity);
         totalPrice = itemView.findViewById(R.id.cartTotalPrice);
-
-
     }
 
     @Override

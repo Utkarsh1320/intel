@@ -3,6 +3,8 @@ package com.example.intel.Products;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.intel.Cart.CartDataModel;
 import com.example.intel.Cart.CartDisplay;
 import com.example.intel.R;
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ public class ProductDetails extends AppCompatActivity {
     private int finalQuantity = 1;
     private final String productID = " ";
     Button LogoutButton ;
+    Button addToCartButton;
 
 
     @Override
@@ -72,7 +75,8 @@ public class ProductDetails extends AppCompatActivity {
         });
 
         //add to cart button ids
-        Button addToCartButton = findViewById(R.id.detailAddToCart);
+        addToCartButton = findViewById(R.id.detailAddToCart);
+
         TextView productQuantity = findViewById(R.id.itemQuantity);
         Button addQuantity = findViewById(R.id.addQuantity);
         Button removeQuantity = findViewById(R.id.removeQuantity);
@@ -96,10 +100,10 @@ public class ProductDetails extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            String productId = extras.getString("id");
+            String productID = extras.getString("id");
 
-            assert productId != null;
-            productRef.child(productId).get().addOnCompleteListener(task -> {
+            assert productID != null;
+            productRef.child(productID).get().addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     DataModel product = task.getResult().getValue(DataModel.class);
                     if(product!=null){
@@ -108,7 +112,6 @@ public class ProductDetails extends AppCompatActivity {
                         productPrice.setText(product.getPrice());
                         productBrand.setText(product.getBrand());
                         productDescription.setText(product.getDescription());
-
                         Picasso.get().load(product.getImage()).into(productImage);
                     }
                 }
@@ -128,6 +131,7 @@ public class ProductDetails extends AppCompatActivity {
                 cartMap.put("quantity", String.valueOf(finalQuantity));
                 cartMap.put("image", products.getImage());
 
+
                 cartListRef.child("User View").child("email")
                         .child("Products").child(productID)
                         .updateChildren(cartMap)
@@ -139,7 +143,7 @@ public class ProductDetails extends AppCompatActivity {
                                 {
                                     Toast.makeText(ProductDetails.this, "Item added to cart", Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(ProductDetails.this, CartDisplay.class);
+                                    Intent intent = new Intent(ProductDetails.this, ProductList.class);
                                     startActivity(intent);
                                 }
                             }

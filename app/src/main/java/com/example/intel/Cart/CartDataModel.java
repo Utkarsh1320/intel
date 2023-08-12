@@ -1,7 +1,22 @@
 package com.example.intel.Cart;
 
 public class CartDataModel {
-    private String id, name , price , brand , image , quantity ;
+    private String id;
+    private String name;
+    private String price;
+    private String brand;
+    private String image;
+    private String quantity;
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
+
+    private String headline ;
 
     public String getId() {
         return id;
@@ -56,6 +71,9 @@ public class CartDataModel {
         this.price = price;
         this.image = image ;
         this.quantity = quantity;
+
+    }
+    public CartDataModel(){
 
     }
 }
