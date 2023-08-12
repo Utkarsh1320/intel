@@ -38,12 +38,12 @@ public class CartDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_display);
 
-        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List")
-                .child("User View").child("email").child("Products");
+        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
 
 
         RecyclerView recyclerView = findViewById(R.id.cartRecyclerView);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FirebaseRecyclerOptions<CartDataModel> options =
@@ -67,6 +67,7 @@ public class CartDisplay extends AppCompatActivity {
             }
         };
         recyclerView.setAdapter(adapter);
+        updateTotalPrice();
 
 
         checkout = findViewById(R.id.cartCheckoutBtn);
@@ -79,14 +80,16 @@ public class CartDisplay extends AppCompatActivity {
         });
     }
 
-    private void updateTotalPrice() {
-        DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference()
-                .child("Cart List")
-                .child("User View")
-                .child("email")
-                .child("Products");
 
-        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+
+
+
+    private void updateTotalPrice() {
+        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+
+        cartListRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int totalPrice = 0;
@@ -109,11 +112,19 @@ public class CartDisplay extends AppCompatActivity {
         });
     }
 
+
+
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
         updateTotalPrice();
         adapter.startListening();
+
+
+
 
     }
     @Override

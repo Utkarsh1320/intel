@@ -140,8 +140,8 @@ public class ProductDetails extends AppCompatActivity {
                 cartMap.put("image", products.getImage());
 
                 // Check if the cart item exists
-                cartListRef.child("User View").child("email")
-                        .child("Products").child(cartItemKey)
+                cartListRef
+                        .child("CartList").child(cartItemKey)
                         .get().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 if (task.getResult().exists()) {
@@ -150,8 +150,8 @@ public class ProductDetails extends AppCompatActivity {
                                     int updatedQuantity = existingQuantity + finalQuantity;
                                     cartMap.put("quantity", String.valueOf(updatedQuantity));
 
-                                    cartListRef.child("User View").child("email")
-                                            .child("Products").child(cartItemKey)
+                                    cartListRef
+                                           .child(cartItemKey)
                                             .updateChildren(cartMap)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -165,8 +165,8 @@ public class ProductDetails extends AppCompatActivity {
                                             });
                                 } else {
                                     // Add a new cart item
-                                    cartListRef.child("User View").child("email")
-                                            .child("Products").child(cartItemKey)
+                                    cartListRef
+                                            .child(cartItemKey)
                                             .setValue(cartMap)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
