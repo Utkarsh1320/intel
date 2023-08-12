@@ -11,7 +11,7 @@ import com.example.intel.R;
 import com.example.intel.interfac.ItemClickListner;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView txtProductName, txtProductPrice, txtProductBrand, itemQuantity, totalPrice;
+    public TextView txtProductName, txtProductPrice,  itemQuantity, totalPrice;
     public ImageView cartImage;
     private ItemClickListner itemClickListner;
 

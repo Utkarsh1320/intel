@@ -113,10 +113,13 @@ public class ProductDetails extends AppCompatActivity {
                         productBrand.setText(product.getBrand());
                         productDescription.setText(product.getDescription());
                         Picasso.get().load(product.getImage()).into(productImage);
+                        products = product;
                     }
                 }
 
+
             });
+
         }
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +127,7 @@ public class ProductDetails extends AppCompatActivity {
                 final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
 
                 final HashMap<String, Object> cartMap = new HashMap<>();
-                cartMap.put("id", productID);
+
                 cartMap.put("headline", productName.getText().toString());
                 cartMap.put("price", productPrice.getText().toString());
                 cartMap.put("brand", productBrand.getText().toString());

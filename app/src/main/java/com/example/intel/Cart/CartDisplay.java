@@ -69,7 +69,7 @@ public class CartDisplay extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull CartDataModel model) {
                 holder.txtProductName.setText(model.getHeadline());
                 holder.txtProductPrice.setText(model.getPrice());
-                holder.itemQuantity.setText("Quantity: "+model.getQuantity());
+                holder.itemQuantity.setText("Quantity: " + model.getQuantity());
                 Picasso.get().load(model.getImage()).into(holder.cartImage);
 
 
@@ -96,7 +96,7 @@ public class CartDisplay extends AppCompatActivity {
 
                                 if(i==0) {
                                     Intent intent = new Intent(CartDisplay.this, ProductDetails.class);
-                                    intent.putExtra("pid", model.getId());
+                                    intent.putExtra("id", model.getId());
                                     startActivity(intent);
                                 }
 
