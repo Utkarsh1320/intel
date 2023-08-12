@@ -1,6 +1,7 @@
 package com.example.intel.Cart;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -10,8 +11,10 @@ import com.squareup.picasso.Picasso;
 
 public class CartViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView productName, productPrice, productQuantity;
-    private ImageView productImage;
+    public TextView productName, productPrice, productQuantity;
+    public ImageView productImage;
+
+    ImageButton add, rem;
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,6 +22,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         productPrice = itemView.findViewById(R.id.cart_price);
         productQuantity = itemView.findViewById(R.id.itemQuantity);
         productImage = itemView.findViewById(R.id.cart_img);
+        add = itemView.findViewById(R.id.additem);
+        rem = itemView.findViewById(R.id.removeitem);
     }
 
     public void bindCartItem(@NonNull CartDataModel cartItem) {

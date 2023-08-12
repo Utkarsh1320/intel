@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.intel.Checkout;
 import com.example.intel.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,9 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CartDisplay extends AppCompatActivity {
 
-    ImageButton add, rem ;
 
     Button checkout;
+
 
     private FirebaseRecyclerAdapter<CartDataModel, CartViewHolder> adapter;
 
@@ -58,14 +61,72 @@ public class CartDisplay extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.cartitem, parent, false);
                 return new CartViewHolder(view);
+
+
+
             }
 
+
+
+
+
+            @SuppressLint("RecyclerView")
             @Override
             protected void onBindViewHolder(CartViewHolder holder, int position, CartDataModel model) {
                 // Bind data to your ViewHolder
                 holder.bindCartItem(model);
+
+                holder.add.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Increment the quantity in the cart for this item
+                        int currentQuantity = Integer.parseInt(holder.productQuantity.getText().toString());
+                        currentQuantity++;
+                        // Update the Firebase database accordingly
+                        holder.productQuantity.setText(String.valueOf(currentQuantity));
+                        DatabaseReference cartItemRef = getRef(position);
+                        cartItemRef.child("quantity").setValue(String.valueOf(currentQuantity));
+                        holder.productQuantity.setText(String.valueOf(currentQuantity));
+                        updateTotalPrice();
+
+                    }
+                });
+
+                holder.rem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int currentQuantity = Integer.parseInt(holder.productQuantity.getText().toString());
+                        if (currentQuantity > 1) {
+                            currentQuantity--; // Decrement the quantity
+                            holder.productQuantity.setText(String.valueOf(currentQuantity));
+                            DatabaseReference cartItemRef = getRef(position);
+                            cartItemRef.child("quantity").setValue(String.valueOf(currentQuantity));
+                        } else {
+                            // If quantity reaches 0, remove the item from the cart list
+                            DatabaseReference cartItemRef = getRef(position);
+                            cartItemRef.removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                // Item removed successfully
+                                                // You can put any additional logic here
+                                            } else {
+                                                // Handle error
+                                            }
+                                        }
+                                    });
+                        }
+                        updateTotalPrice();
+                    }
+                });
             }
         };
+
+
+
+
+
         recyclerView.setAdapter(adapter);
         updateTotalPrice();
 
@@ -78,11 +139,8 @@ public class CartDisplay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
-
-
-
-
 
 
 
@@ -122,6 +180,7 @@ public class CartDisplay extends AppCompatActivity {
         super.onStart();
         updateTotalPrice();
         adapter.startListening();
+
 
 
 
