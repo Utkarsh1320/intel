@@ -162,7 +162,7 @@ public class ProductDetails extends AppCompatActivity {
 
                 final HashMap<String, Object> cartMap = new HashMap<>();
 
-                String cartItemKey = productID; // Use the product ID as the cart item key
+                String cartItemKey = cartListRef.push().getKey();; // Use the product ID as the cart item key
 
                 cartMap.put("headline", productName.getText().toString());
                 cartMap.put("price", productPrice.getText().toString());

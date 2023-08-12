@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.intel.R;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
+
 public class CartDisplay extends AppCompatActivity {
+
+    private ImageButton add, rem ;
 
     private DatabaseReference cartListRef;
     private FirebaseRecyclerAdapter<CartDataModel, CartViewHolder> adapter;
@@ -63,4 +67,5 @@ public class CartDisplay extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
 }
