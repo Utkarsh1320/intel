@@ -121,6 +121,40 @@ public class ProductDetails extends AppCompatActivity {
             });
 
         }
+//        addToCartButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+//
+//                final HashMap<String, Object> cartMap = new HashMap<>();
+//
+//                String cartItemKey = cartListRef.push().getKey(); // Generate a unique key for the new cart item
+//
+//                cartMap.put("headline", productName.getText().toString());
+//                cartMap.put("price", productPrice.getText().toString());
+//                cartMap.put("brand", productBrand.getText().toString());
+//                cartMap.put("quantity", String.valueOf(finalQuantity));
+//                cartMap.put("image", products.getImage());
+//
+//
+//                cartListRef.child("User View").child("email")
+//                        .child("Products").child(cartItemKey)
+//                        .updateChildren(cartMap)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task)
+//                            {
+//                                if (task.isSuccessful())
+//                                {
+//                                    Toast.makeText(ProductDetails.this, "Item added to cart", Toast.LENGTH_SHORT).show();
+//
+//                                    Intent intent = new Intent(ProductDetails.this, ProductList.class);
+//                                    startActivity(intent);
+//                                }
+//                            }
+//                        });
+//            }
+//        });
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,31 +162,59 @@ public class ProductDetails extends AppCompatActivity {
 
                 final HashMap<String, Object> cartMap = new HashMap<>();
 
+                String cartItemKey = productID; // Use the product ID as the cart item key
+
                 cartMap.put("headline", productName.getText().toString());
                 cartMap.put("price", productPrice.getText().toString());
                 cartMap.put("brand", productBrand.getText().toString());
                 cartMap.put("quantity", String.valueOf(finalQuantity));
                 cartMap.put("image", products.getImage());
 
-
+                // Check if the cart item exists
                 cartListRef.child("User View").child("email")
-                        .child("Products").child(productID)
-                        .updateChildren(cartMap)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task)
-                            {
-                                if (task.isSuccessful())
-                                {
-                                    Toast.makeText(ProductDetails.this, "Item added to cart", Toast.LENGTH_SHORT).show();
+                        .child("Products").child(cartItemKey)
+                        .get().addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                if (task.getResult().exists()) {
+                                    // Update the quantity for the existing item
+                                    int existingQuantity = Integer.parseInt(task.getResult().child("quantity").getValue().toString());
+                                    int updatedQuantity = existingQuantity + finalQuantity;
+                                    cartMap.put("quantity", String.valueOf(updatedQuantity));
 
-                                    Intent intent = new Intent(ProductDetails.this, ProductList.class);
-                                    startActivity(intent);
+                                    cartListRef.child("User View").child("email")
+                                            .child("Products").child(cartItemKey)
+                                            .updateChildren(cartMap)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(ProductDetails.this, "Item quantity updated in cart", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(ProductDetails.this, ProductList.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                            });
+                                } else {
+                                    // Add a new cart item
+                                    cartListRef.child("User View").child("email")
+                                            .child("Products").child(cartItemKey)
+                                            .setValue(cartMap)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(ProductDetails.this, "Item added to cart", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(ProductDetails.this, ProductList.class);
+                                                        startActivity(intent);
+                                                    }
+                                                }
+                                            });
                                 }
                             }
                         });
             }
         });
+
         productQuantity.setText(String.valueOf(finalQuantity));
 
     }
