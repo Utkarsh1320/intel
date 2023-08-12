@@ -121,40 +121,7 @@ public class ProductDetails extends AppCompatActivity {
             });
 
         }
-//        addToCartButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
-//
-//                final HashMap<String, Object> cartMap = new HashMap<>();
-//
-//                String cartItemKey = cartListRef.push().getKey(); // Generate a unique key for the new cart item
-//
-//                cartMap.put("headline", productName.getText().toString());
-//                cartMap.put("price", productPrice.getText().toString());
-//                cartMap.put("brand", productBrand.getText().toString());
-//                cartMap.put("quantity", String.valueOf(finalQuantity));
-//                cartMap.put("image", products.getImage());
-//
-//
-//                cartListRef.child("User View").child("email")
-//                        .child("Products").child(cartItemKey)
-//                        .updateChildren(cartMap)
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task)
-//                            {
-//                                if (task.isSuccessful())
-//                                {
-//                                    Toast.makeText(ProductDetails.this, "Item added to cart", Toast.LENGTH_SHORT).show();
-//
-//                                    Intent intent = new Intent(ProductDetails.this, ProductList.class);
-//                                    startActivity(intent);
-//                                }
-//                            }
-//                        });
-//            }
-//        });
+
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,7 +129,7 @@ public class ProductDetails extends AppCompatActivity {
 
                 final HashMap<String, Object> cartMap = new HashMap<>();
 
-                String cartItemKey = cartListRef.push().getKey();; // Use the product ID as the cart item key
+                String cartItemKey = productID; // Use the product ID as the cart item key
 
                 cartMap.put("headline", productName.getText().toString());
                 cartMap.put("price", productPrice.getText().toString());
@@ -214,6 +181,7 @@ public class ProductDetails extends AppCompatActivity {
                         });
             }
         });
+
 
         productQuantity.setText(String.valueOf(finalQuantity));
 
