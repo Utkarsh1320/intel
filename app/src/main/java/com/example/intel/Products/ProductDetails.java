@@ -34,7 +34,7 @@ public class ProductDetails extends AppCompatActivity {
     private TextView productDescription;
     DataModel products;
     private int finalQuantity = 1;
-    private final String productID = " ";
+    private String productID = " ";
     Button LogoutButton ;
     Button addToCartButton;
 
@@ -100,7 +100,7 @@ public class ProductDetails extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            String productID = extras.getString("id");
+            productID = extras.getString("id");
 
             assert productID != null;
             productRef.child(productID).get().addOnCompleteListener(task -> {
