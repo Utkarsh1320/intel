@@ -27,11 +27,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CartDisplay extends AppCompatActivity {
 
-    private ImageButton add, rem ;
+    ImageButton add, rem ;
 
     Button checkout;
 
-    private DatabaseReference cartListRef;
     private FirebaseRecyclerAdapter<CartDataModel, CartViewHolder> adapter;
 
     @Override
@@ -39,8 +38,10 @@ public class CartDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_display);
 
-        cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List")
+        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List")
                 .child("User View").child("email").child("Products");
+
+
 
         RecyclerView recyclerView = findViewById(R.id.cartRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

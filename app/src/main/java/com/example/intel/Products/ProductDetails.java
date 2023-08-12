@@ -112,6 +112,7 @@ public class ProductDetails extends AppCompatActivity {
                         productPrice.setText(product.getPrice());
                         productBrand.setText(product.getBrand());
                         productDescription.setText(product.getDescription());
+
                         Picasso.get().load(product.getImage()).into(productImage);
                         products = product;
                     }
@@ -135,6 +136,7 @@ public class ProductDetails extends AppCompatActivity {
                 cartMap.put("price", productPrice.getText().toString());
                 cartMap.put("brand", productBrand.getText().toString());
                 cartMap.put("quantity", String.valueOf(finalQuantity));
+                cartMap.put("id",productID);
                 cartMap.put("image", products.getImage());
 
                 // Check if the cart item exists
