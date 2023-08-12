@@ -4,7 +4,7 @@ public class CartDataModel {
     private String id;
     private String name;
     private String price;
-    private String brand;
+
     private String image;
     private String quantity;
 
@@ -42,13 +42,7 @@ public class CartDataModel {
         this.price = price;
     }
 
-    public String getBrand() {
-        return brand;
-    }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
 
     public String getImage() {
         return image;
