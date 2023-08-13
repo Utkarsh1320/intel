@@ -3,6 +3,7 @@ package com.example.intel;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -14,51 +15,40 @@ public class Checkout extends AppCompatActivity {
 
     EditText sd_name,sd_email, sd_address, sd_postal, sd_phone, sd_cardnumber, sd_valid, sd_cvv, sd_holdername;
     TextView txt_Shipping;
-    Button checkout_btn;
+    Button orderNow;
     private CardView cardView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        ;
 
 
 
-            sd_name = (EditText) findViewById(R.id.sd_name);
-            sd_email = (EditText) findViewById(R.id.sd_email);
-            sd_address = (EditText) findViewById(R.id.sd_address);
-            sd_postal = (EditText) findViewById(R.id.sd_postal);
-            sd_phone = (EditText) findViewById(R.id.sd_phone);
-            sd_cardnumber = (EditText) findViewById(R.id.sd_cardnumber) ;
-            sd_valid = (EditText) findViewById(R.id.sd_valid);
-            sd_cvv = (EditText) findViewById(R.id.sd_cvv);
-            sd_holdername = (EditText) findViewById(R.id.sd_holdername);
-            checkout_btn = (Button) findViewById(R.id.checkout_btn);
+            sd_name = findViewById(R.id.sd_name);
+            sd_email = findViewById(R.id.sd_email);
+            sd_address = findViewById(R.id.sd_address);
+            sd_postal = findViewById(R.id.sd_postal);
+            sd_phone = findViewById(R.id.sd_phone);
+            sd_cardnumber = findViewById(R.id.sd_cardnumber);
+            sd_valid = findViewById(R.id.sd_valid);
+            sd_cvv = findViewById(R.id.sd_cvv);
+            sd_holdername = findViewById(R.id.sd_holdername);
+            orderNow = findViewById(R.id.checkout_btn);
             cardView = findViewById(R.id.cartActivityCardView);
-            txt_Shipping = (TextView) findViewById(R.id.txt_Shipping);
+            txt_Shipping = findViewById(R.id.txt_Shipping);
 
 
-            checkout_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean validField = validateForm();
-                    if(validField)
-                    {
-                        sd_name.setVisibility(View.INVISIBLE);
-                        sd_email.setVisibility(View.INVISIBLE);
-                        sd_address.setVisibility(View.INVISIBLE);
-                        sd_postal.setVisibility(View.INVISIBLE);
-                        sd_phone.setVisibility(View.INVISIBLE);
-                        sd_cardnumber.setVisibility(View.INVISIBLE);
-                        sd_valid.setVisibility(View.INVISIBLE);
-                        sd_cvv.setVisibility(View.INVISIBLE);
-                        txt_Shipping.setVisibility(View.INVISIBLE);
-                        sd_holdername.setVisibility(View.INVISIBLE);
-                        checkout_btn.setVisibility(View.INVISIBLE);
-                        cardView.setVisibility(View.VISIBLE);
-                    }
+        orderNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean validField = validateForm();
+                if (validField) {
+                    Intent i = new Intent(Checkout.this, End.class);
+                    startActivity(i);
                 }
-            });
+            }
+        });
+
         }
 
         private boolean validateForm() {

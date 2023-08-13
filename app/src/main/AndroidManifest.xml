@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Intel"
         tools:targetApi="31">
         <activity
+            android:name=".End"
+            android:exported="false" />
+        <activity
             android:name=".Checkout"
             android:exported="false" />
         <activity
