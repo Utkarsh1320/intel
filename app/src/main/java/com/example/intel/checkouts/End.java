@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.intel.Products.ProductList;
 import com.example.intel.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,7 +36,13 @@ public class End extends AppCompatActivity {
     }
 
     private void clearCart() {
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
+                .child("User")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Cart List");
+
+
+
         cartListRef.removeValue();
     }
 }
