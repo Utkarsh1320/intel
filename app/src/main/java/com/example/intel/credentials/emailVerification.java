@@ -13,6 +13,10 @@ import com.example.intel.R;
 import com.example.intel.databinding.ActivityCreatePageBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class emailVerification extends AppCompatActivity {
 
@@ -79,6 +83,7 @@ public class emailVerification extends AppCompatActivity {
                     }
                 });
     }
+
 
 
     @Override
