@@ -19,6 +19,7 @@ import com.example.intel.checkouts.Checkout;
 import com.example.intel.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,10 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CartDisplay extends AppCompatActivity {
 
-
     Button checkout;
-
-
     private FirebaseRecyclerAdapter<CartDataModel, CartViewHolder> adapter;
 
     @Override
@@ -41,9 +39,10 @@ public class CartDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_display);
 
-        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
-
-
+        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
+                .child("User")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Cart List");
 
         RecyclerView recyclerView = findViewById(R.id.cartRecyclerView);
         recyclerView.setHasFixedSize(true);
@@ -62,10 +61,6 @@ public class CartDisplay extends AppCompatActivity {
                         .inflate(R.layout.cartitem, parent, false);
                 return new CartViewHolder(view);
             }
-
-
-
-
 
             @SuppressLint("RecyclerView")
             @Override
@@ -119,13 +114,8 @@ public class CartDisplay extends AppCompatActivity {
             }
         };
 
-
-
-
-
         recyclerView.setAdapter(adapter);
         updateTotalPrice();
-
 
         checkout = findViewById(R.id.cartCheckoutBtn);
         checkout.setOnClickListener(new View.OnClickListener() {
@@ -135,13 +125,13 @@ public class CartDisplay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
-
-
     private void updateTotalPrice() {
-        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
+                .child("User")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Cart List");
 
         cartListRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -166,26 +156,16 @@ public class CartDisplay extends AppCompatActivity {
         });
     }
 
-
-
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
         updateTotalPrice();
         adapter.startListening();
-
-
-
-
-
     }
+
     @Override
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
     }
-
 }

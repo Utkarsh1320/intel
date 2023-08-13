@@ -126,7 +126,10 @@ public class ProductDetails extends AppCompatActivity {
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+                final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
+                        .child("User")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("Cart List");
 
                 final HashMap<String, Object> cartMap = new HashMap<>();
 
@@ -136,12 +139,12 @@ public class ProductDetails extends AppCompatActivity {
                 cartMap.put("price", productPrice.getText().toString());
                 cartMap.put("brand", productBrand.getText().toString());
                 cartMap.put("quantity", String.valueOf(finalQuantity));
-                cartMap.put("id",productID);
+                cartMap.put("id", productID);
                 cartMap.put("image", products.getImage());
+                cartMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid()); // Add user's UID
 
                 // Check if the cart item exists
-                cartListRef
-                        .child("CartList").child(cartItemKey)
+                cartListRef.child("CartList").child(cartItemKey)
                         .get().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 if (task.getResult().exists()) {
@@ -150,8 +153,7 @@ public class ProductDetails extends AppCompatActivity {
                                     int updatedQuantity = existingQuantity + finalQuantity;
                                     cartMap.put("quantity", String.valueOf(updatedQuantity));
 
-                                    cartListRef
-                                           .child(cartItemKey)
+                                    cartListRef.child(cartItemKey)
                                             .updateChildren(cartMap)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -165,8 +167,7 @@ public class ProductDetails extends AppCompatActivity {
                                             });
                                 } else {
                                     // Add a new cart item
-                                    cartListRef
-                                            .child(cartItemKey)
+                                    cartListRef.child(cartItemKey)
                                             .setValue(cartMap)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
@@ -183,7 +184,6 @@ public class ProductDetails extends AppCompatActivity {
                         });
             }
         });
-
 
         productQuantity.setText(String.valueOf(finalQuantity));
 
