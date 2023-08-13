@@ -1,4 +1,4 @@
-package com.example.intel;
+package com.example.intel.checkouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.intel.R;
 
 public class Checkout extends AppCompatActivity {
 

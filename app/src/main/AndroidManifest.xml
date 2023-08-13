@@ -15,10 +15,10 @@
         android:theme="@style/Theme.Intel"
         tools:targetApi="31">
         <activity
-            android:name=".End"
+            android:name=".checkouts.End"
             android:exported="false" />
         <activity
-            android:name=".Checkout"
+            android:name=".checkouts.Checkout"
             android:exported="false" />
         <activity
             android:name=".Products.Details"

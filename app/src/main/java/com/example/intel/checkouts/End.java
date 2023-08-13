@@ -1,4 +1,4 @@
-package com.example.intel;
+package com.example.intel.checkouts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.intel.Products.ProductList;
+import com.example.intel.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
