@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class emailVerification extends AppCompatActivity {
 
-    Button verifybtn;
+    Button verifybtn , backToMain;
     private String email;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
@@ -33,6 +33,7 @@ public class emailVerification extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         verifybtn = findViewById(R.id.btn_verify);
+        backToMain = findViewById(R.id.btn_redirect);
         mUser = mAuth.getCurrentUser();
 
         verifybtn.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,14 @@ public class emailVerification extends AppCompatActivity {
                 sendVerificationEmail(email);
             }
         });
+        backToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(emailVerification.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     private void sendVerificationEmail(String email) {
@@ -70,6 +79,7 @@ public class emailVerification extends AppCompatActivity {
                     }
                 });
     }
+
 
     @Override
     protected void onStart() {
