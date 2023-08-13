@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    tools:context=".Products.ProductDetails">
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/cart_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentEnd="true"
+      android:layout_marginStart="160dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      app:tint="@color/white"
+      android:layout_marginBottom="90dp"
+      android:src="@drawable/baseline_shopping_cart_24"
+      app:backgroundTint="@color/black"
+      tools:ignore="SpeakableTextPresentCheck" />
+
+
+  <LinearLayout
+      android:id="@+id/head"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="50dp">
+    <ImageView
+        android:padding="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/logo"
+        android:background="@drawable/button"/>
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="520dp"
+
+        android:background="@drawable/button"
+        android:text="Logout"
+        app:backgroundTint="@color/black" />
+
+  </LinearLayout>
+
+
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+      <ImageView
+          android:id="@+id/detail_img"
+          android:layout_width="250dp"
+          android:layout_height="120dp"
+          android:layout_marginTop="70dp"
+          android:layout_centerHorizontal="true"
+          android:background="@drawable/edit"
+          android:contentDescription="@string/imagedetail" />
+      <TextView
+          android:id="@+id/detail_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="10dp"
+          android:layout_marginEnd="10dp"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="10dp"
+          android:fontFamily="@font/amiko"
+          android:text="@string/name_of_product_det"
+          android:textColor="@color/black"
+          android:textSize="25sp" />
+      <TextView
+          android:id="@+id/detail_brand"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/detail_name"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="15dp"
+          android:fontFamily="@font/amiko"
+          android:text="@string/name_of_product"
+          android:textColor="@color/black"
+          android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
+
+
+
+
+
+
+      <TextView
+          android:id="@+id/detail_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/detail_brand"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="50dp"
+          android:layout_marginEnd="10dp"
+          android:layout_marginBottom="10dp"
+          android:fontFamily="@font/amiko"
+          android:text="@string/name_of_product_detail"
+          android:textSize="18sp" />
+    </LinearLayout>
+  </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <LinearLayout
+      android:id="@+id/btn_wrapper"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:gravity="center"
+      android:orientation="horizontal">
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/detail_description"
+        android:layout_marginStart="10dp">
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="$"
+          android:textColor="@color/black"
+          android:textStyle="bold|italic"
+          android:textSize="35sp"/>
+
+      <TextView
+          android:id="@+id/detail_price"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="5dp"
+          android:text="599"
+          android:textColor="@color/black"
+          android:textStyle="bold|italic"
+          android:textSize="35sp" />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="134dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="180dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/detailAddToCart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+      <Button
+          android:id="@+id/removeQuantity"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_alignParentStart="true"
+          android:layout_centerVertical="true"
+          android:background="@drawable/baseline_remove_24"
+          app:backgroundTint="@color/black"
+          tools:ignore="ObsoleteLayoutParam,SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+      <TextView
+          android:id="@+id/itemQuantity"
+          android:layout_width="62dp"
+          android:layout_height="46dp"
+          android:layout_centerInParent="true"
+          android:background="@color/bg"
+          android:gravity="center"
+          android:textAlignment="center"
+          android:textColor="@android:color/black"
+          android:textSize="20sp" />
+
+      <Button
+          android:id="@+id/addQuantity"
+          android:layout_width="40dp"
+          android:layout_height="35dp"
+          android:layout_alignParentEnd="true"
+          android:layout_centerVertical="true"
+          android:background="@drawable/baseline_add_24"
+          app:backgroundTint="@color/black"
+          tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/detailAddToCart"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/add_to_card"
+        app:backgroundTint="@color/black" />
+
+  </LinearLayout>
+
+
+
+</RelativeLayout>

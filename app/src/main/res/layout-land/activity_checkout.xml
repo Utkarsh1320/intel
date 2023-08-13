@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:layout_margin="20dp"
+    tools:context=".Checkout">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button"
+                android:padding="10dp"
+                android:src="@drawable/logo" />
+
+            <Button
+                android:id="@+id/logout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="480dp"
+
+                android:background="@drawable/button"
+                android:text="Logout"
+                app:backgroundTint="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="720dp"
+            android:orientation="vertical"
+            android:layout_below="@+id/head">
+
+            <TextView
+                android:id="@+id/txt_Shipping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:fontFamily="@font/amiko"
+                android:gravity="center"
+                android:text="Address"
+                android:textColor="#000000"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/sd_name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="full_name"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/sd_email"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/sd_address"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="address"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/sd_phone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="phone_number"
+                android:inputType="number"
+                android:maxLength="10"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/sd_postal"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="postal_code"
+                android:maxLength="6"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cartActivityCardView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:outlineAmbientShadowColor="@color/white"
+                android:visibility="invisible"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="325dp"
+                    android:layout_height="57dp">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="266dp"
+                        android:layout_height="38dp"
+                        android:text="Thank you for Ordering"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="21sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.631" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                         />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:id="@+id/sd_holdername"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="cardHolderName"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/sd_cardnumber"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edit"
+                android:ems="10"
+                android:fontFamily="@font/amiko"
+                android:hint="cardnumber"
+                android:maxLength="16"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/sd_valid"
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit"
+                    android:ems="10"
+                    android:fontFamily="@font/amiko"
+                    android:hint="valid_until"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+                <EditText
+                    android:id="@+id/sd_cvv"
+                    android:layout_width="50dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/edit"
+                    android:ems="10"
+                    android:fontFamily="@font/amiko"
+                    android:hint="cvv"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp" />
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/checkout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                app:backgroundTint="#000"
+                android:background="@drawable/button"
+                android:fontFamily="@font/lemon"
+                android:text="Order Now"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:cornerRadius="0dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
