@@ -58,7 +58,6 @@ public class emailVerification extends AppCompatActivity {
                                         .addOnCompleteListener(task1 -> {
                                             if (task1.isSuccessful()) {
                                                 Toast.makeText(emailVerification.this, "Verification email sent. Please check your email.", Toast.LENGTH_SHORT).show();
-                                                // Wait for email verification before logging in
 
                                             } else {
                                                 Toast.makeText(emailVerification.this, "Failed to send verification email.", Toast.LENGTH_SHORT).show();

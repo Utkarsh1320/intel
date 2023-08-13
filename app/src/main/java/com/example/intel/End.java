@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.intel.Products.ProductList;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class End extends AppCompatActivity {
 
@@ -21,11 +23,18 @@ public class End extends AppCompatActivity {
         end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clearCart();
                 Intent i = new Intent(End.this, ProductList.class);
                 startActivity(i);
             }
+
         });
 
 
+    }
+
+    private void clearCart() {
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+        cartListRef.removeValue();
     }
 }
