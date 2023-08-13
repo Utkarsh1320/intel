@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.intel.Checkout;
 import com.example.intel.R;
@@ -61,9 +62,6 @@ public class CartDisplay extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.cartitem, parent, false);
                 return new CartViewHolder(view);
-
-
-
             }
 
 
@@ -110,9 +108,8 @@ public class CartDisplay extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 // Item removed successfully
-                                                // You can put any additional logic here
+                                                Toast.makeText(CartDisplay.this, "item Removed", Toast.LENGTH_SHORT).show();
                                             } else {
-                                                // Handle error
                                             }
                                         }
                                     });
