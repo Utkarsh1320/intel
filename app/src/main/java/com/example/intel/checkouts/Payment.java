@@ -168,8 +168,12 @@ public class Payment extends AppCompatActivity {
             } else if (podLayout.getVisibility() == View.VISIBLE) {
                 if (radioPODCash.isChecked()) {
                     showToast("Cash on Delivery selected");
+                    Intent i = new Intent(Payment.this, End.class);
+                    startActivity(i);
                 } else if (radioPODCard.isChecked()) {
                     showToast("Card on Delivery selected");
+                    Intent i = new Intent(Payment.this, End.class);
+                    startActivity(i);
                 } else {
                     showToast("Please select a POD option");
                 }

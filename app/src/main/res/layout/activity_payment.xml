@@ -169,7 +169,15 @@
         android:textStyle="bold"
         android:paddingTop="8dp"
         android:paddingBottom="8dp" />
-
+        <RadioGroup
+            android:id="@+id/podRadioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/netBankingLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp">
     <RadioButton
         android:id="@+id/radioPODCash"
         android:layout_width="wrap_content"
@@ -181,6 +189,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Card on Delivery" />
+</RadioGroup>
 
     </LinearLayout>
 
