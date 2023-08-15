@@ -126,7 +126,7 @@ public class ProductDetails extends AppCompatActivity {
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
+                DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
                         .child("User")
                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .child("Cart List");
@@ -144,7 +144,7 @@ public class ProductDetails extends AppCompatActivity {
                 cartMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid()); // Add user's UID
 
                 // Check if the cart item exists
-                cartListRef.child("CartList").child(cartItemKey)
+                cartListRef.child(cartItemKey)
                         .get().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 if (task.getResult().exists()) {

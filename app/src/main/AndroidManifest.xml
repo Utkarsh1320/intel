@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Intel"
         tools:targetApi="31">
         <activity
+            android:name=".checkouts.Payment"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".checkouts.Payments"
+            android:exported="false" />
+        <activity
             android:name=".checkouts.End"
             android:exported="false" />
         <activity

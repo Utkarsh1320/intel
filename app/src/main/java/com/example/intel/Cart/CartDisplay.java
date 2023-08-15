@@ -34,6 +34,8 @@ public class CartDisplay extends AppCompatActivity {
     Button checkout;
     private FirebaseRecyclerAdapter<CartDataModel, CartViewHolder> adapter;
 
+    private DataSnapshot cartDataSnapshot;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,14 +119,50 @@ public class CartDisplay extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         updateTotalPrice();
 
+        checkCartEmpty();
+
         checkout = findViewById(R.id.cartCheckoutBtn);
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CartDisplay.this, Checkout.class);
-                startActivity(intent);
+                if (isCartEmpty(cartDataSnapshot)) {
+                    // Show a toast message if cart is empty
+                    Toast.makeText(CartDisplay.this, "Your cart is empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Proceed to checkout
+                    Intent intent = new Intent(CartDisplay.this, Checkout.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    private void checkCartEmpty() {
+        DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference()
+                .child("User")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("Cart List");
+
+        cartListRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                cartDataSnapshot = dataSnapshot;
+                if (isCartEmpty(dataSnapshot)) {
+                    // Cart is empty, show the "Your Cart is Empty" text
+                    TextView emptyCartTextView = findViewById(R.id.cartEmptyText);
+                    emptyCartTextView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle database error
+            }
+        });
+    }
+
+    private boolean isCartEmpty(DataSnapshot dataSnapshot) {
+        return !dataSnapshot.hasChildren();
     }
 
     private void updateTotalPrice() {

@@ -30,7 +30,15 @@
       android:layout_below="@+id/topp">
 
   </androidx.recyclerview.widget.RecyclerView>
-
+  <TextView
+    android:id="@+id/cartEmptyText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:text="Your Cart is Empty"
+    android:textSize="20sp"
+    android:textColor="@color/black"
+    android:visibility="gone" />
 
 <LinearLayout
     android:layout_width="match_parent"
