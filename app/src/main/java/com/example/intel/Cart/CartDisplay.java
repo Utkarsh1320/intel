@@ -95,6 +95,7 @@ public class CartDisplay extends AppCompatActivity {
                             holder.productQuantity.setText(String.valueOf(currentQuantity));
                             DatabaseReference cartItemRef = getRef(position);
                             cartItemRef.child("quantity").setValue(String.valueOf(currentQuantity));
+
                         } else {
                             // If quantity reaches 0, remove the item from the cart list
                             DatabaseReference cartItemRef = getRef(position);
@@ -105,6 +106,7 @@ public class CartDisplay extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 // Item removed successfully
                                                 Toast.makeText(CartDisplay.this, "item Removed", Toast.LENGTH_SHORT).show();
+                                                checkCartEmpty();
                                             } else {
                                             }
                                         }
