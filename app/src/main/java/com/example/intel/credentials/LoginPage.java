@@ -30,7 +30,6 @@ public class LoginPage extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(getApplicationContext(), ProductList.class);
@@ -86,7 +85,7 @@ public class LoginPage extends AppCompatActivity {
                                     finish();
 
                                 } else {
-                                    // If sign in fails, display a message to the user.
+
                                     Toast.makeText(LoginPage.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
 

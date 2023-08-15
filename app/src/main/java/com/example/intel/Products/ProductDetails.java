@@ -54,10 +54,10 @@ public class ProductDetails extends AppCompatActivity {
         });
 
 
-        //reference of the database in the activity
+
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        // ids for elements in the layout
+
         productImage = findViewById(R.id.detail_img);
         productName = findViewById(R.id.detail_name);
         productPrice = findViewById(R.id.detail_price);
@@ -74,7 +74,7 @@ public class ProductDetails extends AppCompatActivity {
             }
         });
 
-        //add to cart button ids
+
         addToCartButton = findViewById(R.id.detailAddToCart);
 
         TextView productQuantity = findViewById(R.id.itemQuantity);
@@ -133,7 +133,7 @@ public class ProductDetails extends AppCompatActivity {
 
                 final HashMap<String, Object> cartMap = new HashMap<>();
 
-                String cartItemKey = productID; // Use the product ID as the cart item key
+                String cartItemKey = productID;
 
                 cartMap.put("headline", productName.getText().toString());
                 cartMap.put("price", productPrice.getText().toString());
@@ -141,14 +141,14 @@ public class ProductDetails extends AppCompatActivity {
                 cartMap.put("quantity", String.valueOf(finalQuantity));
                 cartMap.put("id", productID);
                 cartMap.put("image", products.getImage());
-                cartMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid()); // Add user's UID
+                cartMap.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-                // Check if the cart item exists
+
                 cartListRef.child(cartItemKey)
                         .get().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 if (task.getResult().exists()) {
-                                    // Update the quantity for the existing item
+
                                     int existingQuantity = Integer.parseInt(task.getResult().child("quantity").getValue().toString());
                                     int updatedQuantity = existingQuantity + finalQuantity;
                                     cartMap.put("quantity", String.valueOf(updatedQuantity));
@@ -166,7 +166,6 @@ public class ProductDetails extends AppCompatActivity {
                                                 }
                                             });
                                 } else {
-                                    // Add a new cart item
                                     cartListRef.child(cartItemKey)
                                             .setValue(cartMap)
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {

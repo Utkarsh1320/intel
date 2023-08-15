@@ -37,7 +37,7 @@ public class ProductList extends AppCompatActivity {
 
     Button LogoutButton;
     FirebaseUser user;
-//    private ImageView addToCartBtn;
+
 
     private DatabaseReference ProductRef;
     private RecyclerView recyclerView;
