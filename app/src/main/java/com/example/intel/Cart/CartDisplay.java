@@ -67,16 +67,13 @@ public class CartDisplay extends AppCompatActivity {
             @SuppressLint("RecyclerView")
             @Override
             protected void onBindViewHolder(CartViewHolder holder, int position, CartDataModel model) {
-                // Bind data to your ViewHolder
                 holder.bindCartItem(model);
 
                 holder.add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // Increment the quantity in the cart for this item
                         int currentQuantity = Integer.parseInt(holder.productQuantity.getText().toString());
                         currentQuantity++;
-                        // Update the Firebase database accordingly
                         holder.productQuantity.setText(String.valueOf(currentQuantity));
                         DatabaseReference cartItemRef = getRef(position);
                         cartItemRef.child("quantity").setValue(String.valueOf(currentQuantity));
@@ -91,20 +88,19 @@ public class CartDisplay extends AppCompatActivity {
                     public void onClick(View view) {
                         int currentQuantity = Integer.parseInt(holder.productQuantity.getText().toString());
                         if (currentQuantity > 1) {
-                            currentQuantity--; // Decrement the quantity
+                            currentQuantity--;
                             holder.productQuantity.setText(String.valueOf(currentQuantity));
                             DatabaseReference cartItemRef = getRef(position);
                             cartItemRef.child("quantity").setValue(String.valueOf(currentQuantity));
 
                         } else {
-                            // If quantity reaches 0, remove the item from the cart list
                             DatabaseReference cartItemRef = getRef(position);
                             cartItemRef.removeValue()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                // Item removed successfully
+
                                                 Toast.makeText(CartDisplay.this, "item Removed", Toast.LENGTH_SHORT).show();
                                                 checkCartEmpty();
                                             } else {
@@ -128,10 +124,10 @@ public class CartDisplay extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isCartEmpty(cartDataSnapshot)) {
-                    // Show a toast message if cart is empty
+
                     Toast.makeText(CartDisplay.this, "Your cart is empty", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Proceed to checkout
+
                     Intent intent = new Intent(CartDisplay.this, Checkout.class);
                     startActivity(intent);
                 }
@@ -150,7 +146,7 @@ public class CartDisplay extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 cartDataSnapshot = dataSnapshot;
                 if (isCartEmpty(dataSnapshot)) {
-                    // Cart is empty, show the "Your Cart is Empty" text
+
                     TextView emptyCartTextView = findViewById(R.id.cartEmptyText);
                     emptyCartTextView.setVisibility(View.VISIBLE);
                 }
@@ -158,7 +154,7 @@ public class CartDisplay extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error
+
             }
         });
     }
@@ -191,7 +187,7 @@ public class CartDisplay extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle database error
+
             }
         });
     }
